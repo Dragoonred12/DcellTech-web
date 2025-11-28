@@ -1,1304 +1,233 @@
-<!DOCTYPE HTML>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>DCELL Tech | Soluções em Alta Performance</title>
-    <meta name="description" content="Suporte técnico especializado em formatação, limpeza e otimização de PCs em Curitiba e Região. Estética Cyberpunk, performance profissional.">
-
-    <!-- Fonte Futurista (Google Fonts) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dcell Tech - Especialistas em Formatação, Hardware Gamer e Servidores Cloud. Atendimento Delivery em Curitiba e Região.">
+    <title>Dcell Tech | Soluções em TI e Hardware</title>
     
-    <!-- Ícones (FontAwesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- 1. VARIÁVEIS GLOBAIS --- */
+        /* --- Configurações Globais (Reset) --- */
         :root {
-            --bg-color: #050a14;
-            --glass-bg: rgba(10, 15, 25, 0.75);
-            --neon-cyan: #00e5ff;
-            --neon-pink: #ff00ff;
-            --neon-purple: #bc13fe;
-            --neon-green: #00ff41; 
-            --neon-yellow: #fcee0a;
-            --neon-red: #ff2a2a;
+            --primary: #007bff; /* Azul Tech */
+            --dark-bg: #121212; /* Fundo Preto Moderno */
+            --card-bg: #1e1e1e; /* Cinza Chumbo */
             --text-main: #e0e0e0;
-            --text-dim: #a0a0a0;
+            --accent: #00ff88; /* Verde Neon para detalhes */
         }
 
-        /* --- 2. RESET PROFISSIONAL --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            outline: none;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            background-color: var(--bg-color);
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
             color: var(--text-main);
-            font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
-            font-size: 18px;
             line-height: 1.6;
-            scroll-behavior: smooth;
         }
 
-        h1, h2, h3, h4, nav a, button, input, textarea {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
-        /* --- 3. BACKGROUND ANIMADO --- */
-        #canvas-rain {
+        /* --- Navbar --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(18, 18, 18, 0.95);
             position: fixed;
+            width: 100%;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
         }
-
-        .city-skyline {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 25vh;
-            background: 
-                linear-gradient(to top, #02050a 0%, transparent 100%),
-                repeating-linear-gradient(90deg, #0a1020 0px, #0a1020 40px, transparent 40px, transparent 80px),
-                repeating-linear-gradient(90deg, #080c18 20px, #080c18 50px, transparent 50px, transparent 120px);
-            z-index: 1;
-            opacity: 0.8;
-            pointer-events: none;
-            border-top: 1px solid rgba(0, 229, 255, 0.3);
-            box-shadow: 0 0 50px rgba(0, 229, 255, 0.1);
+        
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; color: #fff; }
+        .logo span { color: var(--primary); }
+        
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
         }
+        .nav-btn:hover { background: #0056b3; }
 
-        /* --- 4. LAYOUT PRINCIPAL --- */
-        #wrapper {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            min-height: 100vh;
+        /* --- Hero Section (Capa) --- */
+        .hero {
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            padding-top: 5vh;
-        }
-
-        /* --- 5. COMPONENTES: HEADER & LOGO --- */
-        header {
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            margin-bottom: 4rem;
-            animation: fadeInDown 1.5s ease-out;
+            padding: 0 20px;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
-        .logo-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 2rem;
-            position: relative;
-        }
-        
-        .logo-glow {
-            animation: pulse-cyan 3s infinite alternate;
-        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; text-transform: uppercase; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin-bottom: 30px; color: #bbb; }
 
-        h1.main-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
-            margin-bottom: 0.5rem;
-        }
-
-        p.tagline {
-            font-size: 1.2rem;
-            color: var(--neon-pink);
-            letter-spacing: 4px;
-            font-weight: 700;
-            text-shadow: 0 0 5px var(--neon-pink);
-        }
-
-        /* --- 6. GLASS PANEL --- */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-left: 2px solid var(--neon-cyan);
-            border-right: 2px solid var(--neon-pink);
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin-bottom: 4rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
-
-        .glass-panel:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(0, 229, 255, 0.15);
-        }
-
-        /* --- 7. BOTÕES --- */
-        .btn-tech {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: var(--neon-cyan);
-            text-decoration: none;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            border: 2px solid var(--neon-cyan);
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-top: 1rem;
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
-        }
-
-        .btn-tech::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--neon-cyan);
-            transition: all 0.4s;
-            z-index: -1;
-        }
-
-        .btn-tech:hover {
+        .cta-button {
+            background: var(--accent);
             color: #000;
-            box-shadow: 0 0 20px var(--neon-cyan);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+            transition: transform 0.2s;
         }
+        .cta-button:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 255, 136, 0.6); }
 
-        .btn-tech:hover::before {
-            left: 0;
-        }
+        /* --- Serviços --- */
+        .services { padding: 80px 5%; }
+        .section-title { text-align: center; margin-bottom: 60px; font-size: 2.5rem; }
+        .section-title span { border-bottom: 3px solid var(--primary); }
 
-        .btn-tech.small {
-            padding: 0.5rem 1.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .btn-tech.full {
-            width: 100%;
-            text-align: center;
-        }
-
-        /* --- 8. CARDS --- */
-        .services-grid, .testimonials-grid {
+        .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            gap: 30px;
         }
 
         .card {
-            background: rgba(5, 10, 20, 0.6);
-            border: 1px solid rgba(0, 229, 255, 0.2);
-            padding: 2rem;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
-            background: rgba(5, 10, 20, 0.8);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            color: var(--neon-pink);
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
-        }
-
-        .card h3 {
-            color: var(--neon-cyan);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            color: #ccc;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        /* Estilo Específico para Testimonials (User Logs) */
-        .testimonial-card {
-            border-color: rgba(188, 19, 254, 0.3);
-        }
-        .testimonial-card:hover {
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 30px rgba(188, 19, 254, 0.15);
-        }
-        .user-id {
-            font-size: 0.8rem;
-            color: var(--neon-cyan);
-            margin-bottom: 10px;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-        }
-        .user-rating {
-            color: var(--neon-green);
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-
-        /* --- 9. PRICING --- */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 5rem;
-        }
-
-        .pricing-card {
-            background: rgba(5, 10, 20, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .pricing-card.featured {
-            border: 2px solid var(--neon-purple);
-            box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
-            transform: scale(1.05);
-            z-index: 2;
-        }
-
-        .pricing-card.featured::before {
-            content: 'RECOMENDADO';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--neon-purple);
-            color: #fff;
-            padding: 4px 12px;
-            font-size: 0.8rem;
-            border-radius: 20px;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .pricing-title {
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-cost {
-            font-size: 2.5rem;
-            color: var(--neon-cyan);
-            font-weight: 700;
-            margin-bottom: 2rem;
-            font-family: 'Orbitron', sans-serif;
-        }
-        
-        .pricing-cost span {
-            font-size: 1rem;
-            color: #aaa;
-            font-weight: 400;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            margin-bottom: 10px;
-            color: #ccc;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 10px;
-        }
-
-        .pricing-features li i {
-            color: var(--neon-cyan);
-            margin-right: 10px;
-            width: 20px;
-        }
-
-        /* --- 10. METRICS (ESTATÍSTICAS) --- */
-        .metrics-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 4rem 0;
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.5);
-            border-top: 1px solid var(--neon-cyan);
-            border-bottom: 1px solid var(--neon-cyan);
-            backdrop-filter: blur(5px);
-        }
-
-        .metric-item {
-            text-align: center;
-            margin: 1rem;
-        }
-
-        .metric-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #fff;
-            display: block;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 10px var(--neon-cyan);
-        }
-
-        .metric-label {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-        }
-
-        /* --- 11. FAQ --- */
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto 4rem;
-        }
-
-        details {
-            background: rgba(0, 0, 0, 0.4);
-            margin-bottom: 1rem;
-            border: 1px solid rgba(0, 229, 255, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        details[open] {
-            border-color: var(--neon-pink);
-            background: rgba(5, 10, 20, 0.8);
-        }
-
-        summary {
-            padding: 1.5rem;
-            cursor: pointer;
-            font-weight: 700;
-            color: var(--text-main);
-            position: relative;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        summary::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--neon-cyan);
-            font-weight: 300;
-        }
-
-        details[open] summary::after {
-            content: '-';
-            color: var(--neon-pink);
-        }
-
-        .faq-content {
-            padding: 0 1.5rem 1.5rem;
-            color: #aaa;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 1rem;
-        }
-
-        /* --- 12. CONTACT FORM (TERMINAL STYLE) --- */
-        .contact-section {
-            max-width: 800px;
-            margin: 0 auto 5rem;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid var(--text-dim);
-            padding: 2rem;
-            position: relative;
-        }
-        
-        .contact-section::before {
-            content: 'UPLINK_STATION_V.2.0';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--bg-color);
-            padding: 0 10px;
-            color: var(--neon-green);
-            font-size: 0.8rem;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #333;
-            padding: 1rem 0;
-            color: var(--neon-cyan);
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.1rem;
-            transition: 0.3s;
-        }
-
-        .form-input:focus {
-            border-bottom-color: var(--neon-pink);
-            background: linear-gradient(to top, rgba(255,0,255,0.05), transparent);
-        }
-
-        .form-input::placeholder {
-            color: #555;
-            text-transform: uppercase;
-        }
-
-        /* --- 13. ZONA DE OPERAÇÃO E GARANTIA --- */
-        .coverage-box {
-            border: 1px solid rgba(0, 229, 255, 0.2);
-            background: rgba(0, 0, 0, 0.6);
-            padding: 1.5rem;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 4rem;
-        }
-        .coverage-list span {
-            display: inline-block;
-            margin: 0 10px;
-            color: var(--neon-cyan);
-            border: 1px solid var(--neon-cyan);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        .guarantee-section {
-            text-align: center;
-            margin: 4rem 0;
-            padding: 2rem;
-            border: 2px dashed var(--neon-green);
-            background: rgba(0, 255, 65, 0.05);
-            border-radius: 12px;
-        }
-        .guarantee-icon {
-            font-size: 3rem;
-            color: var(--neon-green);
-            margin-bottom: 1rem;
-        }
-        .guarantee-text h3 {
-            color: var(--neon-green);
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- 14. PAGAMENTOS --- */
-        .payment-box {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-            background: rgba(5, 10, 20, 0.9);
-            border: 1px solid var(--neon-green);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-        }
-
-        .payment-col {
-            text-align: center;
-        }
-
-        .payment-title {
-            color: var(--neon-green);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            border-bottom: 1px solid rgba(0, 255, 65, 0.3);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        .payment-icons {
-            font-size: 2.5rem;
-            color: #fff;
-            margin: 1rem 0;
-        }
-        
-        .payment-icons i {
-            margin: 0 10px;
-            transition: transform 0.3s;
-        }
-        
-        .payment-icons i:hover {
-            transform: scale(1.2);
-            color: var(--neon-green);
-        }
-
-        .payment-detail {
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-
-        .installments-badge {
-            background: var(--neon-green);
-            color: #000;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            display: inline-block;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-        }
-
-        .email-display {
-            font-family: 'Rajdhani', monospace;
-            background: #000;
-            padding: 10px;
-            border: 1px dashed var(--text-dim);
-            color: var(--neon-yellow);
-            margin-top: 10px;
-            display: inline-block;
-            font-size: 1.1rem;
-        }
-
-        /* --- 15. SAC (SUPORTE) --- */
-        .sac-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .sac-item {
-            background: rgba(5, 10, 20, 0.6);
-            border: 1px solid rgba(255, 42, 42, 0.3);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .sac-item:hover {
-            border-color: var(--neon-red);
-            box-shadow: 0 0 15px rgba(255, 42, 42, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .sac-item i {
-            font-size: 2rem;
-            color: var(--neon-red);
-            margin-bottom: 1rem;
-        }
-
-        .sac-item h3 {
-            color: #fff;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .sac-item p {
-            font-size: 0.9rem;
-            color: #ccc;
-            margin-bottom: 0.5rem;
-        }
-
-        .sac-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--neon-red);
-            border: 1px solid var(--neon-red);
-            padding: 5px 15px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            border-radius: 4px;
-            transition: 0.3s;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .sac-link:hover {
-            background: var(--neon-red);
-            color: #fff;
-        }
-
-        .email-mini {
-            color: var(--text-dim);
-            font-family: monospace;
-            display: block;
-            margin-top: 5px;
-        }
-
-        /* --- 16. CHATBOT CSS --- */
-        /* Botão do Chatbot */
-        .chatbot-btn {
-            position: fixed;
-            width: 50px;
-            height: 50px;
-            bottom: 100px; /* Acima do WhatsApp */
-            right: 35px; /* Centralizado com o WhatsApp (que tem 60px) */
-            background-color: var(--bg-color);
-            color: var(--neon-cyan);
-            border: 2px solid var(--neon-cyan);
-            border-radius: 50%;
-            text-align: center;
-            font-size: 22px;
-            box-shadow: 0px 0px 15px rgba(0, 229, 255, 0.4);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-            animation: pulse-blue 3s infinite;
-        }
-        .chatbot-btn:hover {
-            transform: scale(1.1);
-            background-color: var(--neon-cyan);
-            color: #000;
-        }
-
-        /* Janela do Chat */
-        .chat-window {
-            position: fixed;
-            bottom: 160px;
-            right: 30px;
-            width: 320px;
-            max-width: 85vw;
-            height: 450px;
-            background: rgba(5, 10, 20, 0.95);
-            border: 1px solid var(--neon-cyan);
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
-            z-index: 101;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            font-family: 'Rajdhani', sans-serif;
-            transform-origin: bottom right;
-            transition: all 0.3s ease;
-            
-            /* Estado inicial: escondido */
-            opacity: 0;
-            transform: scale(0);
-            pointer-events: none;
-        }
-
-        .chat-window.active {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: all;
-        }
-
-        .chat-header {
-            background: rgba(0, 229, 255, 0.1);
-            padding: 10px 15px;
-            border-bottom: 1px solid var(--neon-cyan);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-header h3 {
-            font-size: 1rem;
-            color: var(--neon-cyan);
-            margin: 0;
-        }
-
-        .close-chat {
-            background: none;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .chat-body {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        /* Mensagens */
-        .msg {
-            max-width: 80%;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        .msg.bot {
-            align-self: flex-start;
-            background: rgba(0, 229, 255, 0.1);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            color: #fff;
-            border-top-left-radius: 0;
-        }
-
-        .msg.user {
-            align-self: flex-end;
-            background: rgba(255, 0, 255, 0.2);
-            border: 1px solid rgba(255, 0, 255, 0.3);
-            color: #fff;
-            border-top-right-radius: 0;
-            text-align: right;
-        }
-
-        /* Opções (Botões dentro do chat) */
-        .chat-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-top: 5px;
-        }
-
-        .chat-option-btn {
-            background: transparent;
-            border: 1px solid var(--neon-cyan);
-            color: var(--neon-cyan);
-            padding: 5px 10px;
+            background: var(--card-bg);
+            padding: 30px;
             border-radius: 15px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: 0.2s;
-            font-family: 'Rajdhani', sans-serif;
+            border: 1px solid #333;
+            transition: 0.3s;
         }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
+        .card h3 { margin-bottom: 15px; color: #fff; }
+        .card ul { list-style: none; margin-top: 15px; }
+        .card ul li { margin-bottom: 8px; color: #aaa; }
+        .card ul li i { font-size: 0.8rem; color: var(--accent); margin-right: 5px; margin-bottom: 0; }
 
-        .chat-option-btn:hover {
-            background: var(--neon-cyan);
-            color: #000;
+        /* --- Diferenciais / Delivery --- */
+        .banner-delivery {
+            background: var(--primary);
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+            margin: 50px 0;
         }
+        .banner-delivery h2 { font-size: 2rem; margin-bottom: 10px; }
 
-        @keyframes pulse-blue {
-            0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 229, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
+        /* --- Footer --- */
+        footer {
+            background: #000;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid #333;
         }
+        .footer-text { color: #666; font-size: 0.9rem; }
 
-        /* --- 17. WHATSAPP BUTTON --- */
-        .float-btn {
+        /* --- Botão Flutuante WhatsApp --- */
+        .whatsapp-float {
             position: fixed;
-            width: 60px;
-            height: 60px;
             bottom: 30px;
             right: 30px;
             background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             text-align: center;
-            font-size: 30px;
-            box-shadow: 0px 0px 20px rgba(37, 211, 102, 0.6);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s;
-            animation: pulse-green 2s infinite;
+            font-size: 35px;
+            line-height: 60px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            z-index: 1001;
+            transition: 0.3s;
         }
-        .float-btn:hover {
-            transform: scale(1.1);
-        }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #20ba5a; }
 
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* --- GLOBAL TITLES --- */
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-            color: #fff;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 3px;
-            background: var(--neon-pink);
-            margin: 10px auto 0;
-            box-shadow: 0 0 10px var(--neon-pink);
-        }
-
-        /* --- RESPONSIVIDADE --- */
+        /* --- Mobile --- */
         @media (max-width: 768px) {
-            h1.main-title { font-size: 2.5rem; }
-            .glass-panel { padding: 1.5rem; }
-            .section-title { font-size: 2rem; }
-            .pricing-card.featured { transform: scale(1); margin: 1rem 0; }
-            .metrics-container { flex-direction: column; }
-            .payment-box { grid-template-columns: 1fr; }
-            .sac-container { grid-template-columns: 1fr; }
-            
-            /* Ajuste mobile para os botões flutuantes */
-            .float-btn { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 25px; }
-            .chatbot-btn { bottom: 80px; right: 25px; width: 40px; height: 40px; font-size: 18px; }
-            .chat-window { bottom: 130px; right: 20px; width: 300px; height: 400px; }
+            .hero h1 { font-size: 2.2rem; }
+            .nav-btn { display: none; } /* Esconde botão do menu no mobile pra limpar a tela */
         }
     </style>
 </head>
 <body>
 
-    <canvas id="canvas-rain"></canvas>
-    <div class="city-skyline"></div>
+    <nav>
+        <div class="logo">DCELL<span>TECH</span></div>
+        <a href="#contato" class="nav-btn">Solicitar Orçamento</a>
+    </nav>
 
-    <div id="wrapper">
-        
-        <header>
-            <div class="logo-container logo-glow">
-                <svg viewBox="-4 -4 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M32 4L58 19V45L32 60L6 45V19L32 4Z" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M6 19L16 25" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M58 45L48 39" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M22 28C22 28 22 38 32 38C42 38 42 28 42 28" stroke="#ff00ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M32 20V30" stroke="#ff00ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="32" cy="14" r="1.5" fill="#ff00ff"/>
-                </svg>
-            </div>
+    <header class="hero">
+        <h1>Seu PC <br><span>Voando Baixo</span></h1>
+        <p>Especialistas em performance, manutenção e infraestrutura de redes. Atendemos Curitiba e Região com serviço Delivery.</p>
+        <a href="https://wa.me/5541999999999?text=Olá,%20vim%20pelo%20site%20e%20preciso%20de%20ajuda!" class="cta-button" target="_blank">
+            <i class="fab fa-whatsapp"></i> Falar com Técnico
+        </a>
+    </header>
 
-            <h1 class="main-title">DCELL TECH</h1>
-            <p class="tagline">SYSTEM UPGRADE & REPAIR</p>
-        </header>
-
-        <!-- Intro -->
-        <div class="glass-panel">
-            <h2>Bem-vindo ao Futuro da Manutenção</h2>
-            <p style="margin: 1rem 0; color: #ccc; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Na DCELL Tech, tratamos seu PC como a máquina de alta performance que ela deve ser. Formatação de precisão, limpeza detalhada e otimização extrema.
-            </p>
-            <br>
-            <a href="https://wa.me/5541984644737" class="btn-tech" target="_blank">
-                <i class="fab fa-whatsapp"></i> Iniciar Orçamento
-            </a>
-        </div>
-
-        <!-- Seção 1: Protocolos (Serviços) -->
-        <h2 class="section-title">PROTOCOLOS</h2>
-        
-        <div class="services-grid">
+    <section class="services">
+        <h2 class="section-title"><span>Nossos Serviços</span></h2>
+        <div class="grid-container">
             <div class="card">
-                <div class="card-icon"><i class="fas fa-compact-disc"></i></div>
-                <h3>Formatação</h3>
-                <p>Instalação limpa de OS. Backup seguro, particionamento e drivers atualizados para estabilidade máxima.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-microchip"></i></div>
-                <h3>Hardware</h3>
-                <p>Remoção de poeira técnica, troca de pasta térmica e organização de cabos para reduzir temperaturas.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                <h3>Performance</h3>
-                <p>Otimização de registro, desativação de bloatwares e upgrades estratégicos (SSD/RAM).</p>
-            </div>
-        </div>
-
-        <!-- Metrics do Sistema -->
-        <div class="metrics-container">
-            <div class="metric-item">
-                <span class="metric-number">24h</span>
-                <span class="metric-label">TEMPO MÉDIO DE RESPOSTA</span>
-            </div>
-        </div>
-
-        <!-- Seção 2: Níveis de Acesso (Preços) -->
-        <h2 class="section-title">NÍVEIS DE ACESSO</h2>
-
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3 class="pricing-title">Standard</h3>
-                <div class="pricing-cost">R$ 80<span>/un</span></div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Formatação Simples</li>
-                    <li><i class="fas fa-check"></i> Backup até 50GB</li>
-                    <li><i class="fas fa-check"></i> Pacote Office</li>
-                    <li><i class="fas fa-check"></i> Antivírus Básico</li>
+                <i class="fas fa-gamepad"></i>
+                <h3>Formatação & Otimização</h3>
+                <p>Não é só formatar. Deixamos seu sistema configurado para extrair o máximo do hardware.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Windows otimizado para jogos</li>
+                    <li><i class="fas fa-check"></i> Instalação de Drivers corretos</li>
+                    <li><i class="fas fa-check"></i> Backup de segurança</li>
                 </ul>
-                <a href="#" class="btn-tech small">Solicitar</a>
             </div>
 
-            <div class="pricing-card featured">
-                <h3 class="pricing-title">Gamer Pro</h3>
-                <div class="pricing-cost">R$ 150<span>/un</span></div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Formatação Otimizada</li>
-                    <li><i class="fas fa-check"></i> Limpeza Física Completa</li>
-                    <li><i class="fas fa-check"></i> Troca de Pasta Térmica</li>
-                    <li><i class="fas fa-check"></i> Otimização de FPS</li>
-                    <li><i class="fas fa-check"></i> Drivers de GPU Atuais</li>
-                </ul>
-                <a href="#" class="btn-tech small" style="border-color: var(--neon-purple); color: var(--neon-purple);">Solicitar</a>
-            </div>
-
-            <div class="pricing-card">
-                <h3 class="pricing-title">Ultra</h3>
-                <div class="pricing-cost">R$ 250<span>/un</span></div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Tudo do Gamer Pro</li>
+            <div class="card">
+                <i class="fas fa-screwdriver"></i>
+                <h3>Manutenção de Hardware</h3>
+                <p>Seu computador está esquentando ou desligando? Resolvemos com as melhores práticas.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Limpeza técnica detalhada</li>
+                    <li><i class="fas fa-check"></i> Troca de pasta térmica (Prata/Cerâmica)</li>
                     <li><i class="fas fa-check"></i> Cable Management</li>
-                    <li><i class="fas fa-check"></i> Diagnóstico de Peças</li>
-                    <li><i class="fas fa-check"></i> Configuração de BIOS</li>
-                    <li><i class="fas fa-check"></i> Suporte Remoto (30 dias)</li>
                 </ul>
-                <a href="#" class="btn-tech small">Solicitar</a>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-server"></i>
+                <h3>Redes & Cloud</h3>
+                <p>Soluções avançadas para sua casa ou pequena empresa.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Configuração de Servidores (Oracle/Linux)</li>
+                    <li><i class="fas fa-check"></i> Cabeamento estruturado</li>
+                    <li><i class="fas fa-check"></i> Hospedagem de sites</li>
+                </ul>
             </div>
         </div>
+    </section>
 
-        <!-- GARANTIA (RISK REVERSAL) -->
-        <div class="guarantee-section">
-            <div class="guarantee-icon"><i class="fas fa-shield-alt"></i></div>
-            <div class="guarantee-text">
-                <h3>GARANTIA DE INTEGRIDADE DO SISTEMA</h3>
-                <p>Confiamos tanto no nosso protocolo que oferecemos <strong>15 dias de suporte gratuito</strong> para qualquer instabilidade relacionada ao serviço realizado.</p>
-            </div>
-        </div>
-
-        <!-- DADOS DE TRANSAÇÃO (PAGAMENTOS & EMAIL) -->
-        <h2 class="section-title">DADOS DE TRANSAÇÃO</h2>
-        
-        <div class="payment-box">
-            <!-- Email -->
-            <div class="payment-col">
-                <div class="payment-title">CANAL CORPORATIVO</div>
-                <p class="payment-detail">Para envio de notas e documentação:</p>
-                <div class="email-display">EM_BREVE_NOVO_EMAIL@DCELL.COM</div>
-            </div>
-
-            <!-- Pagamentos -->
-            <div class="payment-col">
-                <div class="payment-title">MÉTODOS ACEITOS</div>
-                <div class="payment-icons">
-                    <i class="fas fa-qrcode" title="Pix"></i>
-                    <i class="fab fa-cc-visa" title="Visa"></i>
-                    <i class="fab fa-cc-mastercard" title="Mastercard"></i>
-                    <i class="fas fa-credit-card" title="Débito/Crédito"></i>
-                </div>
-                <div class="installments-badge">ATÉ 4X SEM JUROS</div>
-            </div>
-        </div>
-
-        <!-- FAQ -->
-        <h2 class="section-title">BANCO DE DADOS</h2>
-
-        <div class="faq-container">
-            <details>
-                <summary>Quanto tempo demora o serviço?</summary>
-                <div class="faq-content">
-                    Para formatação padrão, o prazo médio é de 24h. Para serviços completos de limpeza e otimização (Nível Gamer/Ultra), pedimos até 48h.
-                </div>
-            </details>
-            <details>
-                <summary>Vocês buscam o PC em casa?</summary>
-                <div class="faq-content">
-                    Sim! Temos serviço de "Coleta e Entrega" (Leva e Traz). Consulte a taxa de deslocamento para o seu bairro pelo WhatsApp.
-                </div>
-            </details>
-            <details>
-                <summary>Meus arquivos são apagados?</summary>
-                <div class="faq-content">
-                    Não se você solicitar o backup. Salvamos seus arquivos em servidor seguro antes de formatar e devolvemos tudo nas pastas originais.
-                </div>
-            </details>
-            <details>
-                <summary>Atendem Notebook Gamer?</summary>
-                <div class="faq-content">
-                    Com certeza. Somos especialistas em sistemas de refrigeração de notebooks de alta performance.
-                </div>
-            </details>
-        </div>
-        
-        <!-- ZONA DE OPERAÇÃO -->
-        <div class="coverage-box">
-            <h3 style="color: #fff; margin-bottom: 1.5rem;">ZONAS DE OPERAÇÃO (COBERTURA)</h3>
-            <div class="coverage-list">
-                <span>CURITIBA</span>
-                <span>SÃO JOSÉ DOS PINHAIS</span>
-                <span>PINHAIS</span>
-                <span>OUTROS BAIRROS SOB CONSULTA</span>
-            </div>
-        </div>
-
-        <!-- CENTRAL DE SUPORTE (SAC) -->
-        <h2 class="section-title">CENTRAL DE SUPORTE</h2>
-        <div class="sac-container">
-            <!-- Atendimento Geral -->
-            <div class="sac-item">
-                <i class="fas fa-headset"></i>
-                <h3>HORÁRIO DE COMANDO</h3>
-                <p>Segunda a Sexta: 19:00 - 22:00</p>
-                <p>Sábados e Domingos: 09:00 - 21:00</p>
-            </div>
-
-            <!-- Urgência -->
-            <div class="sac-item">
-                <i class="fas fa-exclamation-triangle"></i>
-                <h3>CANAL DE URGÊNCIA</h3>
-                <p>Problemas com serviço realizado?</p>
-                <a href="https://wa.me/5541984644737?text=Tenho%20uma%20urgencia%20com%20meu%20servico" class="sac-link" target="_blank">ACIONAR SUPORTE</a>
-            </div>
-
-            <!-- Ouvidoria -->
-            <div class="sac-item">
-                <i class="fas fa-envelope-open-text"></i>
-                <h3>OUVIDORIA</h3>
-                <p>Críticas ou Sugestões</p>
-                <span class="email-mini">sac@dcell.com</span>
-            </div>
-        </div>
-
-        <!-- Contact Form -->
-        <h2 class="section-title">ESTABELECER CONEXÃO</h2>
-        
-        <div class="contact-section">
-            <form action="https://formsubmit.co/SEU_EMAIL_AQUI" method="POST">
-                <!-- ANTI-SPAM & CONFIG -->
-                <input type="hidden" name="_subject" value="NOVO CHAMADO: DCELL TECH">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_autoresponse" value="Recebemos sua solicitação de orçamento. A equipe DCELL Tech entrará em contato em breve.">
-
-                <div class="form-group">
-                    <input type="text" name="nome" class="form-input" placeholder="DIGITE SEU NOME" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" class="form-input" placeholder="DIGITE SEU E-MAIL" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="mensagem" class="form-input" rows="4" placeholder="DESCREVA O PROBLEMA DO SISTEMA" required></textarea>
-                </div>
-                <button type="submit" class="btn-tech full">ENVIAR TRANSMISSÃO</button>
-            </form>
-        </div>
-
-        <footer style="text-align: center; font-size: 0.8rem; color: var(--text-dim); margin-top: 2rem; padding-bottom: 2rem;">
-            <p>&copy; 2025 DCELL TECH. Todos os sistemas operacionais.</p>
-        </footer>
-
+    <div class="banner-delivery">
+        <i class="fas fa-motorcycle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+        <h2>Sistema Leva e Traz</h2>
+        <p>Não precisa desconectar tudo e carregar peso. Nós buscamos seu equipamento, arrumamos e devolvemos instalado.</p>
     </div>
 
-    <!-- BOTÃO DO WHATSAPP (FIXO) -->
-    <a href="https://wa.me/5541984644737" class="float-btn" target="_blank">
+    <footer>
+        <div class="logo" style="margin-bottom: 20px;">DCELL<span>TECH</span></div>
+        <p class="footer-text">Soluções em Tecnologia da Informação - CNPJ: XX.XXX.XXX/0001-XX</p>
+        <p class="footer-text">&copy; 2025 Dcell Tech Solutions.</p>
+    </footer>
+
+    <a href="https://wa.me/5541999999999?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20meu%20PC" class="whatsapp-float" target="_blank" id="contato">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- BOTÃO DO CHATBOT (FIXO ACIMA DO WHATSAPP) -->
-    <div class="chatbot-btn" id="chatbot-toggle">
-        <i class="fas fa-robot"></i>
-    </div>
-
-    <!-- JANELA DO CHATBOT (ESCONDIDA POR PADRÃO) -->
-    <div class="chat-window" id="chat-window">
-        <div class="chat-header">
-            <h3>DCELL AI ASSISTANT v1.0</h3>
-            <button class="close-chat" id="close-chat">×</button>
-        </div>
-        <div class="chat-body" id="chat-body">
-            <!-- Mensagens aparecem aqui -->
-        </div>
-    </div>
-
-    <script>
-        // --- 1. SCRIPT DE CHUVA MATRIX ---
-        const canvas = document.getElementById('canvas-rain');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let drops = [];
-        const config = { count: 150, color: '#00e5ff', speed: 5 };
-
-        class Drop {
-            constructor() { this.reset(); }
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * -height;
-                this.length = Math.random() * 20 + 10;
-                this.speed = Math.random() * config.speed + 2;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-            update() {
-                this.y += this.speed;
-                if (this.y > height) this.reset();
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.strokeStyle = `rgba(0, 229, 255, ${this.opacity})`;
-                ctx.lineWidth = 1.5;
-                ctx.moveTo(this.x, this.y);
-                ctx.lineTo(this.x, this.y + this.length);
-                ctx.stroke();
-            }
-        }
-
-        function init() {
-            resize();
-            for (let i = 0; i < config.count; i++) drops.push(new Drop());
-            animate();
-        }
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-
-        function animate() {
-            ctx.fillStyle = 'rgba(5, 10, 20, 0.3)'; 
-            ctx.fillRect(0, 0, width, height);
-            drops.forEach(drop => { drop.update(); drop.draw(); });
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', resize);
-        window.onload = init;
-
-        // --- 2. SCRIPT DO CHATBOT ---
-        const chatToggle = document.getElementById('chatbot-toggle');
-        const chatWindow = document.getElementById('chat-window');
-        const closeChat = document.getElementById('close-chat');
-        const chatBody = document.getElementById('chat-body');
-
-        // Estado inicial do chat
-        let chatInitialized = false;
-
-        // Abrir Chat
-        chatToggle.addEventListener('click', () => {
-            chatWindow.classList.add('active');
-            if (!chatInitialized) {
-                initChat();
-                chatInitialized = true;
-            }
-        });
-
-        // Fechar Chat
-        closeChat.addEventListener('click', () => {
-            chatWindow.classList.remove('active');
-        });
-
-        // Adicionar mensagem ao chat
-        function addMessage(text, sender) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('msg', sender);
-            msgDiv.innerHTML = text;
-            chatBody.appendChild(msgDiv);
-            chatBody.scrollTop = chatBody.scrollHeight; // Rola para baixo
-        }
-
-        // Adicionar opções (botões)
-        function addOptions(options) {
-            const optionsDiv = document.createElement('div');
-            optionsDiv.classList.add('chat-options');
-            
-            options.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.classList.add('chat-option-btn');
-                btn.innerText = opt.text;
-                btn.onclick = () => handleOption(opt.action);
-                optionsDiv.appendChild(btn);
-            });
-            
-            chatBody.appendChild(optionsDiv);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        // Fluxo Inicial
-        function initChat() {
-            // Delay simulando "digitando"
-            setTimeout(() => {
-                addMessage("Inicializando sistema... Olá! Sou o assistente virtual da DCELL.", 'bot');
-                setTimeout(() => {
-                    addMessage("Como posso ajudar você hoje?", 'bot');
-                    addOptions([
-                        { text: "Ver Preços", action: "precos" },
-                        { text: "Agendar Serviço", action: "agendar" },
-                        { text: "Horários", action: "horario" },
-                        { text: "Falar com Humano", action: "humano" }
-                    ]);
-                }, 800);
-            }, 500);
-        }
-
-        // Lógica de Resposta
-        function handleOption(action) {
-            // Remove opções antigas (opcional, mas fica mais limpo)
-            // const oldOptions = document.querySelectorAll('.chat-options');
-            // oldOptions.forEach(el => el.style.display = 'none');
-
-            // Adiciona a escolha do usuário
-            let userText = "";
-            if (action === "precos") userText = "Gostaria de ver os preços.";
-            if (action === "agendar") userText = "Quero agendar um serviço.";
-            if (action === "horario") userText = "Quais os horários?";
-            if (action === "humano") userText = "Quero falar com alguém.";
-            
-            addMessage(userText, 'user');
-
-            // Resposta do Bot
-            setTimeout(() => {
-                if (action === "precos") {
-                    addMessage("Nossos pacotes começam em <strong>R$ 80 (Standard)</strong> e vão até <strong>R$ 250 (Ultra)</strong>. Aceitamos Pix e Cartão em até 4x.", 'bot');
-                    addOptions([{ text: "Voltar", action: "inicio" }]);
-                } 
-                else if (action === "agendar") {
-                    addMessage("Ótima escolha! Para agendar, o mais rápido é nos chamar no WhatsApp.", 'bot');
-                    addMessage('<a href="https://wa.me/5541984644737" target="_blank" style="color: #00e5ff;">Clique aqui para abrir o WhatsApp</a>', 'bot');
-                    addOptions([{ text: "Voltar", action: "inicio" }]);
-                }
-                else if (action === "horario") {
-                    addMessage("Operamos de <strong>Segunda a Sexta das 19h às 22h</strong> e Sábados e Domingos das 09h às 21h.", 'bot');
-                    addOptions([{ text: "Voltar", action: "inicio" }]);
-                }
-                else if (action === "humano") {
-                    addMessage("Entendido. Redirecionando para um técnico...", 'bot');
-                    setTimeout(() => {
-                        window.open("https://wa.me/5541984644737", "_blank");
-                    }, 1500);
-                }
-                else if (action === "inicio") {
-                    addMessage("Como mais posso ajudar?", 'bot');
-                    addOptions([
-                        { text: "Ver Preços", action: "precos" },
-                        { text: "Agendar Serviço", action: "agendar" },
-                        { text: "Horários", action: "horario" }
-                    ]);
-                }
-            }, 600);
-        }
-    </script>
 </body>
-</html>
+</html
