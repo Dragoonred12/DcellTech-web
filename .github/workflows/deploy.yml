@@ -1,0 +1,23 @@
+name: Auto Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    name: Deploy to Oracle Cloud
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conectando via SSH e Atualizando
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /var/www/html
+            git pull origin main
+            # Reinicia o Nginx só por garantia (opcional)
+            sudo systemctl reload nginx
