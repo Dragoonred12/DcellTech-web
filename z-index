@@ -1,0 +1,6 @@
+.botao-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;  /* <-- Garante que fique na frente de tudo */
+}
